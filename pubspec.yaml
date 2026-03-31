@@ -1,0 +1,55 @@
+name: jobmind
+description: "Job Intelligent - Plateforme intelligente de recherche d'emploi Data"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # HTTP Client
+  dio: ^5.7.0
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+
+  # Routing
+  go_router: ^14.6.2
+
+  # Secure Storage (JWT token)
+  flutter_secure_storage: ^9.2.3
+
+  # Google Fonts
+  google_fonts: ^6.2.1
+
+  # Shimmer loading effect
+  shimmer: ^3.0.0
+
+  # Cached network images
+  cached_network_image: ^3.4.1
+
+  # Intl for date formatting
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
