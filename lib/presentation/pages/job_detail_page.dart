@@ -4,6 +4,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
 
 import '../../core/theme.dart';
@@ -183,13 +184,21 @@ class JobDetailPage extends ConsumerWidget {
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 12),
-                    Text(
-                      job.description,
-                      style: TextStyle(
-                        fontSize: 15,
-                        height: 1.6,
-                        color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
-                      ),
+                    Html(
+                      data: job.description,
+                      style: {
+                        "body": Style(
+                          fontSize: FontSize(15.0),
+                          lineHeight: LineHeight(1.6),
+                          color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                          margin: Margins.zero,
+                          padding: HtmlPaddings.zero,
+                        ),
+                        "a": Style(
+                          color: AppColors.primary,
+                          textDecoration: TextDecoration.none,
+                        ),
+                      },
                     ),
                     const SizedBox(height: 32),
 

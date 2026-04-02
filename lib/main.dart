@@ -8,11 +8,20 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/theme.dart';
 import 'core/router.dart';
+import 'presentation/providers/providers.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('fr');
-  runApp(const ProviderScope(child: JobIntelligentApp()));
+  
+  // Read auth token before building the UI to avoid redirecting to login on web refresh
+  final container = ProviderContainer();
+  await container.read(authProvider.notifier).checkAuth();
+
+  runApp(UncontrolledProviderScope(
+    container: container,
+    child: const JobIntelligentApp(),
+  ));
 }
 
 class JobIntelligentApp extends ConsumerWidget {
