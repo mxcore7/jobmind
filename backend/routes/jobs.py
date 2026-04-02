@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 from typing import Optional
 
-from backend.core.dependencies import get_db, get_current_user
+from backend.core.dependencies import get_db, get_current_user, get_optional_current_user
 from backend.models.user import User
 from backend.schemas.job import JobCreate, JobOut
 from backend.services.job_service import (
@@ -35,7 +35,7 @@ def list_jobs(
 def get_job(
     job_id: int,
     db: Session = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user),
+    current_user: Optional[User] = Depends(get_optional_current_user),
 ):
     """Get a single job by ID. Records view in history if user is authenticated."""
     job = get_job_by_id(db, job_id)
