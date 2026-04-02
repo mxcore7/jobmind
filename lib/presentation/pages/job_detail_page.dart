@@ -4,6 +4,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
 
@@ -19,6 +20,7 @@ class JobDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final jobAsync = ref.watch(jobDetailProvider(jobId));
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final unescape = HtmlUnescape();
 
     return Scaffold(
       body: jobAsync.when(
@@ -185,7 +187,7 @@ class JobDetailPage extends ConsumerWidget {
                     ),
                     const SizedBox(height: 12),
                     Html(
-                      data: job.description,
+                      data: unescape.convert(job.description),
                       style: {
                         "body": Style(
                           fontSize: FontSize(15.0),
