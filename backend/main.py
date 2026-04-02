@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI):
     # Scrape real jobs
     db = SessionLocal()
     try:
-        scrape_and_store_jobs(db, limit=150)
+        scrape_and_store_jobs(db, limit=40)
     finally:
         db.close()
 
